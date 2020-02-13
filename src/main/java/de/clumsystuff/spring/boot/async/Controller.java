@@ -9,21 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
 	@Autowired
-	private FailingAsyncStuff failingAsyncStuff;
+	private AsyncStuff asyncStuff;
 
 	@Autowired
 	private RequestScopedData requestScopedData;
 	
-	@RequestMapping("/value")
+	@RequestMapping("/future")
 	public String callWithValue() throws Exception {
 		
-		return this.failingAsyncStuff.returnValue().get();
+		this.requestScopedData.setData("data");
+		this.asyncStuff.useFuture();
+		
+		return "future result";
 	}
 	
-	@RequestMapping("/noValue")
-	public void callWithoutValue() {
+	@RequestMapping("/async")
+	public String callWithoutValue() {
 
 		this.requestScopedData.setData("data");
-		this.failingAsyncStuff.noReturnValue();
+		this.asyncStuff.useAsync();
+		
+		return "async result";
 	}
 }
