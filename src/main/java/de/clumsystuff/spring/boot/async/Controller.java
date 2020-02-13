@@ -10,6 +10,9 @@ public class Controller {
 
 	@Autowired
 	private FailingAsyncStuff failingAsyncStuff;
+
+	@Autowired
+	private RequestScopedData requestScopedData;
 	
 	@RequestMapping("/value")
 	public String callWithValue() throws Exception {
@@ -19,7 +22,8 @@ public class Controller {
 	
 	@RequestMapping("/noValue")
 	public void callWithoutValue() {
-		
+
+		this.requestScopedData.setData("data");
 		this.failingAsyncStuff.noReturnValue();
 	}
 }
