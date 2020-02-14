@@ -35,10 +35,10 @@ public class AsyncConfiguration implements AsyncConfigurer {
 			return () -> {
 				try {
 					RequestContextHolder.setRequestAttributes(context);
-					//MDC.setContextMap(contextMap);
+					MDC.setContextMap(contextMap);
 					runnable.run();
 				} finally {
-					//MDC.clear();
+					MDC.clear();
 					RequestContextHolder.resetRequestAttributes();
 				}
 			};

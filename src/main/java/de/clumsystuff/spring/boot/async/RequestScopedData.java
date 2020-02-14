@@ -1,10 +1,8 @@
 package de.clumsystuff.spring.boot.async;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
 
 @Component
-@RequestScope
 public class RequestScopedData {
 
     private String data;

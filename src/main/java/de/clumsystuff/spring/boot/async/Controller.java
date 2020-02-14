@@ -15,19 +15,21 @@ public class Controller {
 	private RequestScopedData requestScopedData;
 	
 	@RequestMapping("/future")
-	public String callWithValue() throws Exception {
-		
-		this.requestScopedData.setData("data");
-		this.asyncStuff.useFuture();
+	public String useFuture() {
+
+		RequestScopedData requestScopedData = new RequestScopedData();
+		requestScopedData.setData("data");
+		this.asyncStuff.useFuture(requestScopedData);
 		
 		return "future result";
 	}
 	
 	@RequestMapping("/async")
-	public String callWithoutValue() {
+	public String useAsync() {
 
-		this.requestScopedData.setData("data");
-		this.asyncStuff.useAsync();
+		RequestScopedData requestScopedData = new RequestScopedData();
+		requestScopedData.setData("data");
+		this.asyncStuff.useAsync(requestScopedData);
 		
 		return "async result";
 	}
