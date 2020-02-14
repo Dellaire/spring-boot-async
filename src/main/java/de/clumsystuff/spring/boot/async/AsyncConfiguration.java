@@ -18,41 +18,41 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AsyncConfiguration implements AsyncConfigurer {
 
-	@Override
-	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 
-		return new ExceptionHandler();
-	}
+        return new ExceptionHandler();
+    }
 
-	public TaskDecorator createAsyncTaskDecorator() {
+    /*public TaskDecorator createAsyncTaskDecorator() {
 
-		return runnable -> {
+        return runnable -> {
 
-			RequestAttributes context =
-					RequestContextHolder.currentRequestAttributes();
-			Map<String, String> contextMap = MDC.getCopyOfContextMap();
+            RequestAttributes context =
+                    RequestContextHolder.currentRequestAttributes();
+            Map<String, String> contextMap = MDC.getCopyOfContextMap();
 
-			return () -> {
-				try {
-					RequestContextHolder.setRequestAttributes(context);
-					//MDC.setContextMap(contextMap);
-					runnable.run();
-				} finally {
-					//MDC.clear();
-					RequestContextHolder.resetRequestAttributes();
-				}
-			};
-		};
-	}
+            return () -> {
+                try {
+                    RequestContextHolder.setRequestAttributes(context);
+                    MDC.setContextMap(contextMap);
+                    runnable.run();
+                } finally {
+                    MDC.clear();
+                    RequestContextHolder.resetRequestAttributes();
+                }
+            };
+        };
+    }
 
-	@Override
-	@Bean
-	public Executor getAsyncExecutor() {
+    @Override
+    @Bean
+    public Executor getAsyncExecutor() {
 
-		ThreadPoolTaskExecutor poolExecutor = new ThreadPoolTaskExecutor();
-		poolExecutor.setTaskDecorator(createAsyncTaskDecorator());
-		poolExecutor.initialize();
+        ThreadPoolTaskExecutor poolExecutor = new ThreadPoolTaskExecutor();
+        poolExecutor.setTaskDecorator(createAsyncTaskDecorator());
+        poolExecutor.initialize();
 
-		return poolExecutor;
-	}
+        return poolExecutor;
+    }*/
 }

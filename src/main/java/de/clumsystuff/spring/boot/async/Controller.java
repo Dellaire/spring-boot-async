@@ -8,27 +8,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class Controller {
 
-	@Autowired
-	private AsyncStuff asyncStuff;
+    @Autowired
+    private AsyncStuff asyncStuff;
 
-	@Autowired
-	private RequestScopedData requestScopedData;
-	
-	@RequestMapping("/future")
-	public String callWithValue() throws Exception {
-		
-		this.requestScopedData.setData("data");
-		this.asyncStuff.useFuture();
-		
-		return "future result";
-	}
-	
-	@RequestMapping("/async")
-	public String callWithoutValue() {
+    @RequestMapping("/asyncOk")
+    public String asyncOk() {
 
-		this.requestScopedData.setData("data");
-		this.asyncStuff.useAsync();
-		
+        this.asyncStuff.asyncOk("data");
+
+        return "async result";
+    }
+
+	@RequestMapping("/asyncError")
+	public String asyncError() {
+
+		this.asyncStuff.asyncError("data");
+
 		return "async result";
 	}
 }
