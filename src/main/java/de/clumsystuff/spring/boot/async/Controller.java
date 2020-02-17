@@ -27,7 +27,7 @@ public class Controller {
     }
 
 	@RequestMapping("/asyncError")
-	public String asyncError() {
+	public String asyncError() throws InterruptedException {
 
 		this.asyncStuff.asyncError("data");
 
