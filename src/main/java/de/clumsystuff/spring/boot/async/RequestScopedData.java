@@ -8,7 +8,7 @@ public class RequestScopedData {
     private ThreadLocal<String> data = new ThreadLocal<>();
 
     public String getData() {
-        return data.get();
+        return this.data.get();
     }
 
     public void setData(String data) {

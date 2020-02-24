@@ -47,8 +47,9 @@ public class AsyncStuff {
 
         this.requestScopedData.setData(data);
 
-        System.out.println("### (1) ###");
+        System.out.println("(1) - " + this.requestScopedData.getData());
         Thread.sleep(2000);
+        System.out.println("(2) - " + this.requestScopedData.getData());
         if (true) {
             throw new RuntimeException("some error");
         }

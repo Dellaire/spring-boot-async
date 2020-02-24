@@ -1,5 +1,6 @@
 package de.clumsystuff.spring.boot.async;
 
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.function.Supplier;
@@ -39,7 +40,7 @@ public class Controller {
 
 		CompletableFuture.supplyAsync(() -> {
 			try {
-				return this.asyncStuff.futureError("data");
+				return this.asyncStuff.futureError(new Random().nextDouble() + "");
 			} catch (Exception e) {
 				this.exceptionHandler.handleUncaughtException(e, null, null);
 				throw new CompletionException(e);
